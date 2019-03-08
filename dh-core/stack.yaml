@@ -13,7 +13,8 @@ packages:
 # using the same syntax as the packages field.
 # (e.g., acme-missiles-0.3)
 extra-deps:
-- codecov-haskell-0.5.0  
+- github: lunaticare/codecov-haskell
+  commit: 14431a6d421441cce028a4b482408c0ae2efe774
 
 # Override default flag values for local packages and extra-deps
 # flags: {}
