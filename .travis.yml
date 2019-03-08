@@ -38,7 +38,7 @@ script:
 - cat .stack-work/logs/datasets-${DATASETS_V}-test.log
 
 after_script:
-- codecov-haskell test-suite
+- stack exec -- codecov-haskell test-suite
 
 # Caching so the next build will be fast too.
 cache:
