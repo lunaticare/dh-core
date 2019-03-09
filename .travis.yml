@@ -40,7 +40,7 @@ script:
 after_script:
 - export LOCAL_HPC_ROOT=$(stack $ARGS path --local-hpc-root)
 - export DIST_DIR=$(stack $ARGS path --dist-dir)
-- stack $ARGS hpc report --all --destdir $LOCAL_HPC_ROOT/all/ dense-linear-algebra
+- stack $ARGS hpc report --destdir $LOCAL_HPC_ROOT/all/ dense-linear-algebra
 - stack $ARGS install codecov-haskell
 - codecov-haskell spec --tix-dir $LOCAL_HPC_ROOT/ --mix-dir $DIST_DIR/hpc/ --exclude-dir=test --display-report --print-response --token=$CODECOV_TOKEN
 
