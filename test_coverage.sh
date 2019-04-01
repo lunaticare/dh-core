@@ -61,7 +61,7 @@ function add_coverage() {
 }
 
 echo "Install Cabal"
-stack install cabal
+stack install Cabal
 
 echo "Install codecov-haskell"
 # cabal install cabalg-0.2.9
