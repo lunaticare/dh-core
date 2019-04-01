@@ -34,19 +34,20 @@ before_install:
 # executables, and test suites, and runs the test suites. --no-terminal works
 # around some quirks in Travis's terminal implementation.
 script:
-- cd dh-core
+# just build tests
+- pushd dh-core
 # - stack $ARGS --no-terminal --install-ghc test --coverage --haddock
 - stack $ARGS --no-terminal build --test --coverage --haddock
 - cat .stack-work/logs/analyze-${ANALYZE_V}-test.log
 - cat .stack-work/logs/dense-linear-algebra-${DENSE_LINEAR_ALGEBRA_V}-test.log
 - cat .stack-work/logs/datasets-${DATASETS_V}-test.log
+- popd
+# collect test coverage
+- ./test_coverage.sh
 
 after_script:
-- export LOCAL_HPC_ROOT=$(stack $ARGS path --local-hpc-root)
-- export DIST_DIR=$(stack $ARGS path --dist-dir)
-- stack $ARGS hpc report --destdir $LOCAL_HPC_ROOT/all/ dense-linear-algebra
-- stack $ARGS install codecov-haskell
-- codecov-haskell spec --tix-dir $LOCAL_HPC_ROOT/ --mix-dir $DIST_DIR/hpc/ --exclude-dir=test --display-report --print-response --token=$CODECOV_TOKEN
+# collect test coverage
+- ./test_coverage.sh
 
 # Caching so the next build will be fast too.
 cache:
