@@ -60,6 +60,9 @@ function add_coverage() {
     popd
 }
 
+echo "Install Cabal"
+stack install cabal
+
 echo "Install codecov-haskell"
 # cabal install cabalg-0.2.9
 rm -rf codecov-haskell
