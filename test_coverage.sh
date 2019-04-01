@@ -60,6 +60,16 @@ function add_coverage() {
     popd
 }
 
+echo "Install codecov-haskell"
+# cabal install cabalg-0.2.9
+rm -rf codecov-haskell
+# git clone https://github.com/lunaticare/codecov-haskell --depth=1
+git clone ~/dev/github/lunaticare/codecov-haskell --depth=1
+pushd codecov-haskell
+git checkout 7fa0d6bf96ce6a488e13f48bc92281c757086780
+cabal install
+popd
+
 echo "Installing test dependencies"
 cabal install QuickCheck hspec
 
