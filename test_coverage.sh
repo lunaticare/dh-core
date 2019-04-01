@@ -65,6 +65,7 @@ echo "Install codecov-haskell"
 rm -rf codecov-haskell
 git clone https://github.com/lunaticare/codecov-haskell --depth=1
 pushd codecov-haskell
+git fetch --tags --progress upstream '+refs/pull/*/head:refs/remotes/upstream/pr/*/head' --depth=1
 git checkout 7fa0d6bf96ce6a488e13f48bc92281c757086780
 cabal install
 popd
@@ -73,7 +74,7 @@ echo "Installing test dependencies"
 cabal install QuickCheck hspec
 
 add_coverage analyze $ANALYZE_V
-add_coverage dense-linear-algrebra $DENSE_LINEAR_ALGEBRA_V
+add_coverage dense-linear-algebra $DENSE_LINEAR_ALGEBRA_V
 # datasets has no real tests
 add_coverage datasets $DATASETS_V
 # dh-core has no real tests
