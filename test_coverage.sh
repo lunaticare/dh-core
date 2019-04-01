@@ -10,11 +10,13 @@ set -x
 ANALYZE_V=$ANALYZE_V
 DENSE_LINEAR_ALGEBRA_V=$DENSE_LINEAR_ALGEBRA_V
 DATASETS_V=$DATASETS_V
+CODECOV_TOKEN=${CODECOV_TOKEN:-}
 
 # module analyze
 function add_coverage() {
     module=$1
     version=$2
+    echo "Calculating coverage for $module $version"
     pushd $module
     rm -rf dist/hpc
     # install extra dependencies from stack.yaml
@@ -41,20 +43,24 @@ function add_coverage() {
     # TRAVIS_JOB_ID=test-$(date "+%Y%m%d%H%M%S")
     # TRAVIS_COMMIT=$(git rev-parse HEAD)
     # TRAVIS_BRANCH=$(git branch | grep \* | cut -d ' ' -f2)
-    codecov-haskell spec \
-        --exclude-dir=$module/test \
-        --exclude-dir=$module/dist \
-        --display-report \
-        --print-response \
-        --combined=false \
-        --mix-dir $module/dist/hpc/vanilla/mix/ \
-        --tix-dir $module/dist/hpc/vanilla/tix/ \
-        --token=$CODECOV_TOKEN
+    if [ ! -z $CODECOV_TOKEN ] ;
+    then
+        codecov-haskell spec \
+            --exclude-dir=$module/test \
+            --exclude-dir=$module/dist \
+            --display-report \
+            --print-response \
+            --combined=false \
+            --mix-dir $module/dist/hpc/vanilla/mix/ \
+            --tix-dir $module/dist/hpc/vanilla/tix/ \
+            --token=$CODECOV_TOKEN
+    fi        
     # mkdir -p dist/hpc/tix/all/
     # mv dist/hpc/tix/spec/spec.tix
     popd
 }
 
+echo "Installing test dependencies"
 cabal install QuickCheck hspec
 
 add_coverage analyze $ANALYZE_V
