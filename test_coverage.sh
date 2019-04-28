@@ -28,8 +28,7 @@ function add_coverage() {
     #cabal install codecov-haskell
     $stack_exec cabal clean
     $stack_exec cabal install
-    stack $ARGS exec -- \
-        cabal configure --enable-tests --enable-coverage
+    $stack_exec cabal configure --enable-tests --enable-coverage
     $stack_exec cabal test
     # change code file paths from relative to current dirrectory to relative to Git repository root
     # so Codecov can display them on website
