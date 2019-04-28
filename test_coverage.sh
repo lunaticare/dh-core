@@ -77,8 +77,8 @@ git checkout 7fa0d6bf96ce6a488e13f48bc92281c757086780
 stack install
 popd
 
-# echo "Installing test dependencies"
-# stack install $ARGS QuickCheck hspec
+echo "Installing test dependencies"
+$stack_exec cabal install QuickCheck hspec
 
 $stack_exec cabal update
 
