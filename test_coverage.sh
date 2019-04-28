@@ -64,8 +64,7 @@ echo "Install Cabal"
 stack install cabal-install
 
 echo "Install codecov-haskell"
-# cabal install cabalg-0.2.9
-rm -rf codecov-haskell
+# rm -rf codecov-haskell
 git clone https://github.com/lunaticare/codecov-haskell --depth=1
 pushd codecov-haskell
 git fetch --tags --progress origin '+refs/pull/*/head:refs/remotes/upstream/pr/*/head' --depth=1
