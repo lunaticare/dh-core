@@ -23,10 +23,10 @@ function add_coverage() {
     
     #needs to be installed from git@github.com:lunaticare/codecov-haskell.git@7fa0d6bf96ce6a488e13f48bc92281c757086780
     #cabal install codecov-haskell
-    Cabal clean
-    Cabal install
-    Cabal configure --enable-tests --enable-coverage
-    Cabal test
+    cabal clean
+    cabal install
+    cabal configure --enable-tests --enable-coverage
+    cabal test
     # change code file paths from relative to current dirrectory to relative to Git repository root
     # so Codecov can display them on website
     # macOS version
@@ -61,7 +61,7 @@ function add_coverage() {
 }
 
 echo "Install Cabal"
-stack install Cabal
+stack install cabal-install
 
 echo "Install codecov-haskell"
 # cabal install cabalg-0.2.9

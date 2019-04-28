@@ -42,7 +42,6 @@ script:
 # just build tests
 - pushd dh-core
 # - stack $ARGS --no-terminal --install-ghc test --coverage --haddock
-- stack install Cabal
 - stack $ARGS --no-terminal build --test --haddock
 - cat .stack-work/logs/analyze-${ANALYZE_V}-test.log
 - cat .stack-work/logs/dense-linear-algebra-${DENSE_LINEAR_ALGEBRA_V}-test.log
