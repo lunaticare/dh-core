@@ -13,6 +13,8 @@ DATASETS_V=$DATASETS_V
 CODECOV_TOKEN=${CODECOV_TOKEN:-}
 ARGS=$ARGS
 
+stack_exec="stack $ARGS exec --no-ghc-package-path --"
+
 # module analyze
 function add_coverage() {
     module=$1
@@ -24,10 +26,11 @@ function add_coverage() {
     
     #needs to be installed from git@github.com:lunaticare/codecov-haskell.git@7fa0d6bf96ce6a488e13f48bc92281c757086780
     #cabal install codecov-haskell
-    cabal clean
-    stack install $ARGS
-    cabal configure --enable-tests --enable-coverage
-    cabal test
+    $stack_exec cabal clean
+    $stack_exec cabal install
+    stack $ARGS exec -- \
+        cabal configure --enable-tests --enable-coverage
+    $stack_exec cabal test
     # change code file paths from relative to current dirrectory to relative to Git repository root
     # so Codecov can display them on website
     # macOS version
@@ -75,8 +78,10 @@ git checkout 7fa0d6bf96ce6a488e13f48bc92281c757086780
 stack install
 popd
 
-echo "Installing test dependencies"
-stack install $ARGS QuickCheck hspec
+# echo "Installing test dependencies"
+# stack install $ARGS QuickCheck hspec
+
+$stack_exec cabal update
 
 add_coverage analyze $ANALYZE_V
 add_coverage dense-linear-algebra $DENSE_LINEAR_ALGEBRA_V
