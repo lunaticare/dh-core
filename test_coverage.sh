@@ -11,6 +11,7 @@ ANALYZE_V=$ANALYZE_V
 DENSE_LINEAR_ALGEBRA_V=$DENSE_LINEAR_ALGEBRA_V
 DATASETS_V=$DATASETS_V
 CODECOV_TOKEN=${CODECOV_TOKEN:-}
+ARGS=$ARGS
 
 # module analyze
 function add_coverage() {
@@ -24,7 +25,7 @@ function add_coverage() {
     #needs to be installed from git@github.com:lunaticare/codecov-haskell.git@7fa0d6bf96ce6a488e13f48bc92281c757086780
     #cabal install codecov-haskell
     cabal clean
-    cabal install
+    stack install $ARGS
     cabal configure --enable-tests --enable-coverage
     cabal test
     # change code file paths from relative to current dirrectory to relative to Git repository root
