@@ -73,7 +73,7 @@ then
 fi
 pushd codecov-haskell
 git fetch --tags --progress origin '+refs/pull/*/head:refs/remotes/upstream/pr/*/head' --depth=1
-git checkout 7fa0d6bf96ce6a488e13f48bc92281c757086780
+git checkout 4eca32c1f87d32136b035e647dc4c2f4da89c1f9
 stack install
 popd
 
