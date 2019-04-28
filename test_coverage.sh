@@ -75,7 +75,7 @@ stack install
 popd
 
 echo "Installing test dependencies"
-cabal install QuickCheck hspec
+stack install QuickCheck hspec
 
 add_coverage analyze $ANALYZE_V
 add_coverage dense-linear-algebra $DENSE_LINEAR_ALGEBRA_V
