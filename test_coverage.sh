@@ -70,11 +70,11 @@ git clone https://github.com/lunaticare/codecov-haskell --depth=1
 pushd codecov-haskell
 git fetch --tags --progress origin '+refs/pull/*/head:refs/remotes/upstream/pr/*/head' --depth=1
 git checkout 7fa0d6bf96ce6a488e13f48bc92281c757086780
-Cabal install
+cabal install
 popd
 
 echo "Installing test dependencies"
-Cabal install QuickCheck hspec
+cabal install QuickCheck hspec
 
 add_coverage analyze $ANALYZE_V
 add_coverage dense-linear-algebra $DENSE_LINEAR_ALGEBRA_V
