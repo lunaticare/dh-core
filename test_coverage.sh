@@ -44,7 +44,7 @@ function add_coverage() {
     then
         mkdir -p dist/hpc/vanilla/mix/$module-$version/spec/
         cp -R dist/hpc/vanilla/mix/spec/ \
-            dist/hpc/vanilla/mix/$module-$version/spec/
+            dist/hpc/vanilla/mix/$module-$version/
     fi
     # change dir so codecov-haskell can find source files
     cd ../
@@ -62,6 +62,7 @@ function add_coverage() {
             --print-response \
             --combined=false \
             --mix-dir $module/dist/hpc/vanilla/mix/ \
+            --mix-dir $module/dist/hpc/vanilla/mix/$module*/ \
             --tix-dir $module/dist/hpc/vanilla/tix/ \
             --token=$CODECOV_TOKEN
     fi        
