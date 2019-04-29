@@ -42,6 +42,7 @@ function add_coverage() {
     # move analysis results - required for codecov-haskell to find them
     if [ -d dist/hpc/vanilla/mix/spec ] ;
     then
+        mkdir -p dist/hpc/vanilla/mix/$module-$version/spec/
         cp -R dist/hpc/vanilla/mix/spec/ \
             dist/hpc/vanilla/mix/$module-$version/spec/
     fi
