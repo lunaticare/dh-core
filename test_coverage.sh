@@ -85,10 +85,10 @@ git checkout 4eca32c1f87d32136b035e647dc4c2f4da89c1f9
 stack install
 popd
 
+$stack_exec cabal update
+
 echo "Installing test dependencies"
 $stack_exec cabal install QuickCheck hspec
-
-$stack_exec cabal update
 
 add_coverage analyze $ANALYZE_V
 add_coverage dense-linear-algebra $DENSE_LINEAR_ALGEBRA_V
