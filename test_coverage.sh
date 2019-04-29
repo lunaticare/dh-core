@@ -53,7 +53,7 @@ function add_coverage() {
     # TRAVIS_BRANCH=$(git branch | grep \* | cut -d ' ' -f2)
     if [ ! -z $CODECOV_TOKEN ] ;
     then
-        codecov-haskell spec \
+        travis_retry codecov-haskell spec \
             --exclude-dir=$module/test \
             --exclude-dir=$module/dist \
             --display-report \
