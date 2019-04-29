@@ -24,10 +24,8 @@ function add_coverage() {
     rm -rf dist/hpc
     # install extra dependencies from stack.yaml
     
-    #needs to be installed from git@github.com:lunaticare/codecov-haskell.git@7fa0d6bf96ce6a488e13f48bc92281c757086780
-    #cabal install codecov-haskell
-    $stack_exec cabal clean
-    $stack_exec cabal install
+    # $stack_exec cabal clean
+    $stack_exec cabal install --only-dependencies
     $stack_exec cabal configure --enable-tests --enable-coverage
     $stack_exec cabal test
     # change code file paths from relative to current dirrectory to relative to Git repository root
