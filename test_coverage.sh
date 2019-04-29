@@ -80,7 +80,8 @@ fi
 pushd codecov-haskell
 git fetch --tags --progress origin '+refs/pull/*/head:refs/remotes/upstream/pr/*/head' --depth=1
 git checkout 4eca32c1f87d32136b035e647dc4c2f4da89c1f9
-stack install
+# faster with the same Stackage image
+stack $ARGS install
 popd
 
 $stack_exec cabal update
