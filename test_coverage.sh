@@ -60,7 +60,7 @@ function add_coverage() {
             --print-response \
             --combined=false \
             --mix-dir $module/dist/hpc/vanilla/mix/ \
-            --mix-dir $module/dist/hpc/vanilla/mix/$module*/ \
+            --mix-dir $module/dist/hpc/vanilla/mix/${module}*/ \
             --tix-dir $module/dist/hpc/vanilla/tix/ \
             --token=$CODECOV_TOKEN
     fi        
