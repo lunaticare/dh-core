@@ -39,6 +39,12 @@ function add_coverage() {
         -e 's/(test\/.*\.hs")/'$module'\/&/g' \
         -e 's/(dist\/.*\.hs")/'$module'\/&/g' \
         {} \;
+    # move analysis results - required for codecov-haskell to find them
+    if [ -d dist/hpc/vanilla/mix/spec ] ;
+    then
+        cp -R dist/hpc/vanilla/mix/spec/ \
+            dist/hpc/vanilla/mix/$module-$version/spec/
+    fi
     # change dir so codecov-haskell can find source files
     cd ../
     # to simulate Travis locally export following variables:
