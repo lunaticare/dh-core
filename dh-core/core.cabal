@@ -61,7 +61,8 @@ test-suite spec
   build-depends:       base >=4.10 && < 5,
                        core -any,
                        hspec >=2.4.8,
-                       QuickCheck >=2.10.1
+                       QuickCheck >=2.10.1,
+                       codecov-haskell >= 0.5.0
 
 source-repository head
   type:     git
