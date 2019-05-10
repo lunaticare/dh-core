@@ -16,6 +16,26 @@ ARGS=$ARGS
 
 stack_exec="stack $ARGS exec --no-ghc-package-path --"
 
+# retry some operations like curl.
+# travis_retry is not available in this script
+function retry() {
+        local n=0
+        local try=$1
+        local cmd="${@: 2}"
+        [[ $# -le 1 ]] && {
+        echo "Usage $0 <retry_number> <Command>"; }
+
+        until [[ $n -ge $try ]]
+        do
+                $cmd && break || {
+                        echo "Command Fail.."
+                        ((n++))
+                        echo "retry $n ::"
+                        sleep 1;
+                        }
+        done
+}
+
 # module analyze
 function add_coverage() {
     module=$1
@@ -54,7 +74,7 @@ function add_coverage() {
     # TRAVIS_BRANCH=$(git branch | grep \* | cut -d ' ' -f2)
     if [ ! -z $CODECOV_TOKEN ] ;
     then
-        travis_retry codecov-haskell spec \
+        retry 5 codecov-haskell spec \
             --exclude-dir=$module/test \
             --exclude-dir=$module/dist \
             --display-report \
