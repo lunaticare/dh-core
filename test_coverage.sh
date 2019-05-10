@@ -71,7 +71,7 @@ function add_coverage() {
 }
 
 echo "Install Cabal"
-stack install cabal-install
+stack $ARGS install cabal-install
 
 echo "Install codecov-haskell"
 pushd dh-core
